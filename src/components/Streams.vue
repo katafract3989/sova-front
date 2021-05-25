@@ -71,7 +71,10 @@ export default {
           localStorage.token_session = "";
           this.$router.push({ name: "Login" });
         })
-        .then((response) => (localStorage.token_session = response?.data));
+        .then((response) => {
+          localStorage.token_session =
+            response?.data !== undefined ? response.data : null;
+        });
     },
   },
 };
