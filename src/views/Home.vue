@@ -1,18 +1,24 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <Streams />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import Streams from "@/components/Streams.vue";
 
 export default {
   name: "Home",
   components: {
-    HelloWorld,
+    Streams,
   },
 };
 </script>
+<style scoped>
+@media (max-width: 1200px) {
+  img {
+    display: block;
+  }
+}
+</style>
