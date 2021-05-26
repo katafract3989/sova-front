@@ -22,14 +22,16 @@ export default {
       default: () => {},
     },
   },
-  async mounted() {
-    console.log(this.camera);
+  mounted() {
+    let video = this.$refs["video"];
     if (this.camera) {
-      let hls = new Hls();
-      let stream = this.camera.link;
-      let video = this.$refs["video"];
-      await hls.loadSource(stream);
-      await hls.attachMedia(video);
+      if (video.canPlayType("application/vnd.apple.mpegurl")) {
+        video.src = this.camera.link;
+      } else if (Hls.isSupported()) {
+        var hls = new Hls();
+        hls.loadSource(this.camera.link);
+        hls.attachMedia(video);
+      }
     }
   },
 };

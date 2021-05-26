@@ -41,11 +41,16 @@ export default {
     };
   },
   mounted() {
-    if (localStorage.token_session.length > 5) {
-      axios
-        .post("http://sova-back.ru")
-        .then((response) => (this.camers = response.data))
-        .then(() => (this.selected_camera = this.camers[0]));
+    console.log();
+    if (localStorage.token_session !== undefined) {
+      if (localStorage.token_session.length > 5) {
+        axios
+          .post("http://sova-back.ru")
+          .then((response) => (this.camers = response.data))
+          .then(() => (this.selected_camera = this.camers[0]));
+      } else {
+        this.$router.push({ name: "Login" });
+      }
     } else {
       this.$router.push({ name: "Login" });
     }
